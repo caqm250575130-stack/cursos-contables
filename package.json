@@ -1,0 +1,12 @@
+{
+  "name": "antonios-solutions-academia",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node local-server.js",
+    "dev": "node local-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
