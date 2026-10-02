@@ -1,0 +1,22 @@
+ANTONIO'S SOLUTIONS — CHECKLIST VERCEL
+
+1. Subir TODO el contenido de este ZIP al repositorio de GitHub.
+2. Confirmar que GitHub muestra estas rutas:
+   api/auth/login.js
+   api/auth/logout.js
+   api/auth/session.js
+   lib/auth.js
+3. En Vercel > Settings > Environment Variables crear:
+   ADMIN_PASSWORD
+   PRO_PASSWORD
+   PRO_PASSWORD_1
+   PRO_PASSWORD_2
+   PRO_PASSWORD_3
+   PRO_PASSWORD_4
+   PRO_PASSWORD_5
+   PRO_PASSWORD_6
+   SESSION_SECRET
+4. Marcar Production para las variables.
+5. Redeploy del proyecto.
+6. Probar Admin y un curso PRO.
+7. Si aparece "El acceso seguro todavía no está configurado en Vercel", revisar primero que las variables estén en Production y que el deployment actual provenga del commit que contiene api/auth/login.js.
