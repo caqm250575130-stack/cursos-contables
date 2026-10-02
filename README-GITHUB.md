@@ -1,70 +1,43 @@
 # Antonio's Solutions · Academia Contable
 
-## Paquete final para GitHub + Vercel
+## Paquete para GitHub + Vercel
 
-Esta versión conecta el frontend con funciones serverless de Vercel para que las contraseñas no estén dentro de `src/app.js`.
+Este proyecto separa el código público de los secretos. Las contraseñas NO están en `src/app.js`, HTML ni en el repositorio.
 
-### Estructura
-
+### Lo que SÍ se sube a GitHub
 - `index.html`
-- `src/app.js`
-- `src/styles.css`
-- `src/assets/antonio-solutions-logo.png`
-- `src/videos/`
-- `api/auth/login.js`
-- `api/auth/logout.js`
-- `api/auth/session.js`
-- `lib/auth.js`
+- `src/`
+- `api/`
+- `lib/`
 - `vercel.json`
 - `.env.example`
 - `.gitignore`
 - `package.json`
 
-### Subir a GitHub
+### Lo que NO se sube a GitHub
+- `.env.local`
+- `LOCAL-NO-SUBIR/`
+- `local-server.js`
+- `INICIAR-LOCAL.bat`
+- `README-LOCAL.txt`
 
-Sube el contenido de este ZIP al repositorio. No agregues archivos de `.env.local`, contraseñas reales ni carpetas privadas locales.
+La exclusión está reforzada por `.gitignore`.
 
-### Variables de Vercel
+## Vercel
+1. Sube solamente el contenido público a GitHub.
+2. Importa el repositorio en Vercel.
+3. En Vercel → Settings → Environment Variables, crea `ADMIN_PASSWORD`, `PRO_PASSWORD`, `PRO_PASSWORD_1` a `PRO_PASSWORD_6` y `SESSION_SECRET`.
+4. Después de cambiar variables, haz un nuevo deploy.
 
-En **Vercel → Project → Settings → Environment Variables**, crea estas variables como **Secret** y asegúrate de seleccionar **Production** (y Preview/Development si también las necesitas allí):
+## Local
+El paquete completo incluye un servidor local privado para que el login seguro funcione también en tu PC. Usa `INICIAR-LOCAL.bat`.
 
-```text
-ADMIN_PASSWORD
-PRO_PASSWORD
-PRO_PASSWORD_1
-PRO_PASSWORD_2
-PRO_PASSWORD_3
-PRO_PASSWORD_4
-PRO_PASSWORD_5
-PRO_PASSWORD_6
-SESSION_SECRET
-```
+## Videos
+El paquete contiene los 3 videos que estaban disponibles en los archivos entregados: `curso-09-ecuacion-contable.mp4`, `curso-10-cuenta-t.mp4` y `curso-11-error-pvp.mp4`. Otros cursos del catálogo hacen referencia a videos que no estaban disponibles en los archivos recibidos; sus nombres se conservan para no alterar el catálogo, pero esos MP4 deben agregarse cuando estén disponibles.
 
-Los valores reales no están incluidos en este ZIP.
+## Nota de seguridad
+Las contraseñas ya aparecieron durante la conversación; para producción conviene rotarlas antes de usar el sitio públicamente.
 
-`SESSION_SECRET` debe ser una cadena aleatoria de al menos 32 caracteres. Puedes generar una desde tu PC con:
 
-```bash
-node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
-```
-
-### Después de guardar las variables
-
-Haz un nuevo **Deploy/Redeploy** de la rama que usa Vercel. Si cambias variables de Production, verifica que el deployment que estás probando también sea de Production.
-
-### Comprobación rápida
-
-Con el sitio desplegado:
-
-- `/api/auth/session` sin iniciar sesión debe responder `401`.
-- El login Admin usa `POST /api/auth/login` con `scope: "admin"`.
-- El login PRO usa `POST /api/auth/login` con `scope: "pro"`.
-- La contraseña Admin también puede desbloquear PRO, pero la sesión resultante es de rol `pro` y no concede acceso al panel Admin.
-
-### Seguridad
-
-Las contraseñas no deben escribirse en HTML, CSS, JavaScript del navegador, README ni GitHub. Si una contraseña real ya fue compartida o subida a un repositorio, conviene rotarla antes de producción.
-
-### Videos
-
-Este paquete conserva los tres MP4 que estaban disponibles en los archivos entregados. Los cursos cuyo MP4 todavía no estaba disponible mantienen su nombre de archivo en el catálogo para no alterar el contenido.
+LOGO
+El sitio usa el logo oficial proporcionado: src/assets/antonio-solutions-logo.png.
